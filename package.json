@@ -1,0 +1,21 @@
+{
+  "name": "decisiontelecom-nodejs",
+  "version": "1.0.0",
+  "description": "A node.js client library for IT-Decision Telecom messaging API",
+  "main": "index.js",
+  "directories": {
+    "example": "examples",
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "enumify": "^2.0.0",
+    "mocha": "^9.1.3",
+    "nock": "^13.2.1",
+    "request": "^2.81.0"
+  }
+}
