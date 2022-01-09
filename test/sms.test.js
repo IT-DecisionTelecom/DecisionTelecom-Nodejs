@@ -3,6 +3,8 @@ const nock = require('nock');
 const { SmsClient, SmsMessage, SmsError, SmsErrorCode, SmsMessageStatus } = require('../lib/sms.js');
 
 describe('SMS client tests', () => {
+    var smsClient = new SmsClient('login', 'password');
+
     describe('sendMessage tests', () => {
         it('sendMessage returns messageId', async () => {
             let expectedMessageId = 31885463;
@@ -11,7 +13,6 @@ describe('SMS client tests', () => {
                 .get(uri => uri.includes('send'))
                 .reply(200, `["msgid","${expectedMessageId}"]`);
 
-            var smsClient = new SmsClient('login', 'password');
             const messageId = await smsClient.sendMessage(new SmsMessage('', '', '', true));
             assert.equal(messageId, expectedMessageId);
         });
@@ -24,7 +25,6 @@ describe('SMS client tests', () => {
                 .reply(200, `["error",${expectedErrorCode.code}]`);
 
             try {
-                var smsClient = new SmsClient('login', 'password');
                 await smsClient.sendMessage(new SmsMessage('', '', '', true));
             } catch (error) {
                 assert.ok(error instanceof SmsError);
@@ -38,7 +38,6 @@ describe('SMS client tests', () => {
                 .reply(404, `Some general error text`);
 
             try {
-                var smsClient = new SmsClient('login', 'password');
                 await smsClient.sendMessage(new SmsMessage('', '', '', true));
             } catch (error) {
                 assert.ok(error instanceof Error);
@@ -55,7 +54,6 @@ describe('SMS client tests', () => {
                 .get(uri => uri.includes('state'))
                 .reply(200, `["status","${expectedStatus.status}"]`);
 
-            var smsClient = new SmsClient('login', 'password');
             const status = await smsClient.getMessageStatus(124);
             assert.equal(status, expectedStatus);
         });
@@ -67,7 +65,6 @@ describe('SMS client tests', () => {
                 .get(uri => uri.includes('state'))
                 .reply(200, `["status",""]`);
 
-            var smsClient = new SmsClient('login', 'password');
             const status = await smsClient.getMessageStatus(124);
             assert.equal(status, expectedStatus);
         });
@@ -80,7 +77,6 @@ describe('SMS client tests', () => {
                 .reply(200, `["error",${expectedErrorCode.code}]`);
 
             try {
-                var smsClient = new SmsClient('login', 'password');
                 const status = await smsClient.getMessageStatus(124);
             } catch (error) {
                 assert.ok(error instanceof SmsError);
@@ -94,7 +90,6 @@ describe('SMS client tests', () => {
                 .reply(404, `Some general error`);
 
             try {
-                var smsClient = new SmsClient('login', 'password');
                 const status = await smsClient.getMessageStatus(124);
             } catch (error) {
                 assert.ok(error instanceof Error);
@@ -113,7 +108,6 @@ describe('SMS client tests', () => {
                 .get(uri => uri.includes('balance'))
                 .reply(200, `["balance":"${expectedBalance}","credit":"${expectedCredit}","currency":"${expectedCurrency}"]`);
 
-            var smsClient = new SmsClient('login', 'password');
             const balance = await smsClient.getBalance();
 
             assert.ok(balance != null);
@@ -131,7 +125,6 @@ describe('SMS client tests', () => {
                 .reply(200, `["error",${expectedErrorCode.code}]`);
 
             try {
-                var smsClient = new SmsClient('login', 'password');
                 const balance = await smsClient.getBalance();
             } catch (error) {
                 assert.ok(error instanceof SmsError);
@@ -147,7 +140,6 @@ describe('SMS client tests', () => {
                 .reply(404, `Some general error`);
 
             try {
-                var smsClient = new SmsClient('login', 'password');
                 const balance = await smsClient.getBalance();
             } catch (error) {
                 assert.ok(error instanceof Error);
