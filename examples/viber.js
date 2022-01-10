@@ -15,11 +15,11 @@ async function sendTransactionalMessage() {
         console.log('Viber message Id: ' + messageId);
     } catch (error) {
         if (error instanceof ViberError) {
-            console.log(`Error while sending Viber message.
-Error name: ${error.name}
-Error message: ${error.message}
-Error code: ${error.code}
-Error status: ${error.status}`);
+            console.log('Error while sending Viber message.')
+            console.log(`Error name: ${error.name}`);
+            console.log(`Error message: ${error.message}`);
+            console.log(`Error code: ${error.code}`);
+            console.log(`Error status: ${error.status}`);
         } else {
             console.log(error);
         }
@@ -44,11 +44,11 @@ async function sendPromotionalMessage() {
         console.log('Viber message Id: ' + messageId);
     } catch (error) {
         if (error instanceof ViberError) {
-            console.log(`Error while sending Viber message.
-Error name: ${error.name}
-Error message: ${error.message}
-Error code: ${error.code}
-Error status: ${error.status}`);
+            console.log('Error while sending Viber message.')
+            console.log(`Error name: ${error.name}`);
+            console.log(`Error message: ${error.message}`);
+            console.log(`Error code: ${error.code}`);
+            console.log(`Error status: ${error.status}`);
         } else {
             console.log(error);
         }
@@ -62,11 +62,11 @@ async function getMessageStatus() {
         console.log(`Viber message status: ${receipt.status.status} (${receipt.status})`);
     } catch (error) {
         if (error instanceof ViberError) {
-            console.log(`Error while sending Viber message.
-Error name: ${error.name}
-Error message: ${error.message}
-Error code: ${error.code}
-Error status: ${error.status}`);
+            console.log('Error while sending Viber message.')
+            console.log(`Error name: ${error.name}`);
+            console.log(`Error message: ${error.message}`);
+            console.log(`Error code: ${error.code}`);
+            console.log(`Error status: ${error.status}`);
         } else {
             console.log(error);
         }
