@@ -3,6 +3,7 @@ IT-Decision Telecom Node.js SDK
 
 Convenient Node.js client for IT-Decision Telecom messaging API.
 
+[![Node.js CI](https://github.com/IT-DecisionTelecom/DecisionTelecom-Nodejs/actions/workflows/node.js.yml/badge.svg)](https://github.com/IT-DecisionTelecom/DecisionTelecom-Nodejs/actions/workflows/node.js.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Requirements
@@ -10,6 +11,7 @@ Requirements
 
 - [Sign up](https://web.it-decision.com/site/signup) for a free IT-Decision Telecom account
 - Request login and password to send SMS messages and access key to send Viber messages
+- Node.js version 14.x or higher installed.
 - You should have an application written in Node.js to make use of this SDK
 
 Installation
