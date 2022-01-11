@@ -1,6 +1,6 @@
 {
   "name": "decisiontelecom",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A node.js client library for IT-Decision Telecom messaging API",
   "main": "lib/decisionTelecom.js",
   "directories": {
