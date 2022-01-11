@@ -1,8 +1,8 @@
 {
-  "name": "decisiontelecom-nodejs",
+  "name": "decisiontelecom",
   "version": "1.0.0",
   "description": "A node.js client library for IT-Decision Telecom messaging API",
-  "main": "index.js",
+  "main": "lib/decisionTelecom.js",
   "directories": {
     "example": "examples",
     "lib": "lib"
@@ -10,12 +10,24 @@
   "scripts": {
     "test": "mocha"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/IT-DecisionTelecom/DecisionTelecom-Nodejs.git"
+  },
+  "keywords": [
+    "decisiontelecom",
+    "sms",
+    "viber"
+  ],
+  "author": "IT-Decision Telecom <noc@it-decision.com> (https://www.it-decision.com/)",
   "license": "MIT",
+  "homepage": "https://github.com/IT-DecisionTelecom/DecisionTelecom-Nodejs",
   "dependencies": {
     "enumify": "^2.0.0",
-    "mocha": "^9.1.3",
-    "nock": "^13.2.1",
     "request": "^2.81.0"
+  },
+  "devDependencies": {
+    "mocha": "^9.1.3",
+    "nock": "^13.2.1"
   }
 }
