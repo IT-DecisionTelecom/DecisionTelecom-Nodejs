@@ -48,7 +48,7 @@ try {
     // GetBalance method should return SMS balance information.
     console.log(`Balance: ${balance.balance}, Credit: ${balance.credit}, Currency: ${balance.currency}`);
 } catch (error) {
-    if (error instanceof sms.SmsError) {
+    if (error instanceof SmsError) {
         // SmsError contains specific DecisionTelecom error with the code of what went wrong during the operation.
         console.log(`SMS error code: ${error.errorCode.code} (${error.errorCode})`);
     } else {
