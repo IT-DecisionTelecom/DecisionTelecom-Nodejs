@@ -4,7 +4,7 @@ async function smsSendMessage() {
     var message = new SmsMessage('380505555555', '380504444444', 'Text message', true);
 
     try {
-        var smsClient = new SmsClient('testden3', 'Th0wsx1i');
+        var smsClient = new SmsClient('<YOUR_LOGIN>', '<YOUR_PASSWORD>');
         var messageId = await smsClient.sendMessage(message);
         console.log('Message Id: ', messageId);
     } catch(error) {
@@ -22,9 +22,9 @@ async function smsSendMessage() {
 }
 
 function smsGetMessageStatus() {
-    var smsClient = new SmsClient('testden3', 'Th0wsx1i');
+    var smsClient = new SmsClient('<YOUR_LOGIN>', '<YOUR_PASSWORD>');
 
-    smsClient.getMessageStatus(5063922722).then(
+    smsClient.getMessageStatus(31885463).then(
         status => console.log('Message status: ' + status),
         error => {
             if (error instanceof SmsError) {
@@ -41,7 +41,7 @@ function smsGetMessageStatus() {
 }
 
 function smsGetBalance() {
-    var smsClient = new SmsClient('testden3', 'Th0wsx1i');
+    var smsClient = new SmsClient('<YOUR_LOGIN>', '<YOUR_PASSWORD>');
 
     smsClient.getBalance().then(
         balance => console.log(`Balance: ${balance.balance}, Credit: ${balance.credit}, Currency: ${balance.currency}`),
@@ -59,6 +59,6 @@ function smsGetBalance() {
         });
 }
 
-//smsSendMessage();
-//smsGetMessageStatus();
+smsSendMessage();
+smsGetMessageStatus();
 smsGetBalance();
