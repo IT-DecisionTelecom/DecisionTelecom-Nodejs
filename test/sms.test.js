@@ -77,7 +77,7 @@ describe('SMS client tests', () => {
                 .reply(200, `["error",${expectedErrorCode.code}]`);
 
             try {
-                const status = await smsClient.getMessageStatus(124);
+                await smsClient.getMessageStatus(124);
             } catch (error) {
                 assert.ok(error instanceof SmsError);
                 assert.equal(error.errorCode, expectedErrorCode);
@@ -90,7 +90,7 @@ describe('SMS client tests', () => {
                 .reply(404, `Some general error`);
 
             try {
-                const status = await smsClient.getMessageStatus(124);
+                await smsClient.getMessageStatus(124);
             } catch (error) {
                 assert.ok(error instanceof Error);
                 assert.ok(!(error instanceof SmsError));
@@ -125,7 +125,7 @@ describe('SMS client tests', () => {
                 .reply(200, `["error",${expectedErrorCode.code}]`);
 
             try {
-                const balance = await smsClient.getBalance();
+                await smsClient.getBalance();
             } catch (error) {
                 assert.ok(error instanceof SmsError);
                 assert.equal(error.errorCode, expectedErrorCode);
@@ -133,14 +133,12 @@ describe('SMS client tests', () => {
         });
 
         it('getBalance returns general error', async () => {
-            let expectedErrorCode = SmsErrorCode.InvalidLoginOrPassword;
-            
             nock('https://web.it-decision.com/ru/js')
                 .get(uri => uri.includes('balance'))
                 .reply(404, `Some general error`);
 
             try {
-                const balance = await smsClient.getBalance();
+                await smsClient.getBalance();
             } catch (error) {
                 assert.ok(error instanceof Error);
                 assert.ok(!(error instanceof SmsError));
