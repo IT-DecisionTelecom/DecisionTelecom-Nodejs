@@ -84,7 +84,7 @@ async function getMessageStatus() {
     } catch (error) {
         if (error instanceof ViberError) {
             // ViberError contains specific DecisionTelecom error with details of what went wrong during the operation.
-            console.log('Error while sending Viber message.')
+            console.log('Error while getting Viber message status.')
             console.log(`Error name: ${error.name}`);
             console.log(`Error message: ${error.message}`);
             console.log(`Error code: ${error.code}`);
