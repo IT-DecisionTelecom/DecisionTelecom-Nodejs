@@ -32,16 +32,25 @@ describe('SMS client tests', () => {
             }
         });
 
-        it('sendMessage returns general error', async () => {
+        it('sendMessage returns unsuccessful status cod', async () => {
+            var expectedError = new Error('An error occurred while processing request. Response code: 401 (Unauthorized)')
+
             nock('https://web.it-decision.com/ru/js')
                 .get(uri => uri.includes('send'))
-                .reply(404, `Some general error text`);
+                .reply(401, function(uri, requestBody) {
+                    this.req.response.statusMessage = 'Unauthorized';
+                    return {
+                        status: 401,
+                        message: 'Unauthorized Error'
+                    };
+                });
 
             try {
                 await smsClient.sendMessage(new SmsMessage('', '', '', true));
             } catch (error) {
                 assert.ok(error instanceof Error);
                 assert.ok(!(error instanceof SmsError));
+                assert.equal(error.message, expectedError.message);
             }
         });
     });
@@ -84,16 +93,25 @@ describe('SMS client tests', () => {
             }
         });
 
-        it('getMessageStatus returns general error', async () => {
+        it('getMessageStatus returns unsuccessful status code', async () => {
+            var expectedError = new Error('An error occurred while processing request. Response code: 401 (Unauthorized)')
+
             nock('https://web.it-decision.com/ru/js')
                 .get(uri => uri.includes('state'))
-                .reply(404, `Some general error`);
+                .reply(401, function(uri, requestBody) {
+                    this.req.response.statusMessage = 'Unauthorized';
+                    return {
+                        status: 401,
+                        message: 'Unauthorized Error'
+                    };
+                });
 
             try {
                 await smsClient.getMessageStatus(124);
             } catch (error) {
                 assert.ok(error instanceof Error);
                 assert.ok(!(error instanceof SmsError));
+                assert.equal(error.message, expectedError.message);
             }
         });
     });
@@ -132,16 +150,25 @@ describe('SMS client tests', () => {
             }
         });
 
-        it('getBalance returns general error', async () => {
+        it('getBalance returns unsuccessful status code', async () => {
+            var expectedError = new Error('An error occurred while processing request. Response code: 401 (Unauthorized)')
+
             nock('https://web.it-decision.com/ru/js')
                 .get(uri => uri.includes('balance'))
-                .reply(404, `Some general error`);
+                .reply(401, function(uri, requestBody) {
+                    this.req.response.statusMessage = 'Unauthorized';
+                    return {
+                        status: 401,
+                        message: 'Unauthorized Error'
+                    };
+                });
 
             try {
                 await smsClient.getBalance();
             } catch (error) {
                 assert.ok(error instanceof Error);
                 assert.ok(!(error instanceof SmsError));
+                assert.equal(error.message, expectedError.message);
             }
         });
     });
