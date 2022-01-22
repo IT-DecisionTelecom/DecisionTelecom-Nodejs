@@ -37,7 +37,7 @@ describe('Viber client tests', () => {
         });
 
         it('sendMessage returns unsuccessful status code', async () => {
-            var expectedError = new ViberError('Unauthorized', '', 0, 401);
+            var expectedError = new Error('An error occurred while processing request. Response code: 401 (Unauthorized)')
 
             nock('https://web.it-decision.com/v1/api')
                 .post(uri => uri.includes('send-viber'))
@@ -52,9 +52,9 @@ describe('Viber client tests', () => {
             try {
                 await viberClient.sendMessage(new ViberMessage());
             } catch (error) {
-                assert.ok(error instanceof ViberError);
-                assert.equal(error.name, expectedError.name);
-                assert.equal(error.status, expectedError.status);
+                assert.ok(error instanceof Error);
+                assert.ok(!(error instanceof ViberError));
+                assert.equal(error.message, expectedError.message);
             }
         });
     });
@@ -99,7 +99,7 @@ describe('Viber client tests', () => {
         });
 
         it('getMessageStatus returns unsuccessful status code', async () => {
-            var expectedError = new ViberError('Unauthorized', '', 0, 401);
+            var expectedError = new Error('An error occurred while processing request. Response code: 401 (Unauthorized)')
 
             nock('https://web.it-decision.com/v1/api')
                 .post(uri => uri.includes('receive-viber'))
@@ -114,9 +114,9 @@ describe('Viber client tests', () => {
             try {
                 await viberClient.getMessageStatus(429);
             } catch (error) {
-                assert.ok(error instanceof ViberError);
-                assert.equal(error.name, expectedError.name);
-                assert.equal(error.status, expectedError.status);
+                assert.ok(error instanceof Error);
+                assert.ok(!(error instanceof ViberError));
+                assert.equal(error.message, expectedError.message);
             }
         });
     });
